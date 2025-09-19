@@ -5,6 +5,7 @@ import { MessageSquare, Eye, EyeOff, Loader2 } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import AuthImagePattern from '../components/AuthImagePattern';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 const SignUpPage = () => {
 
@@ -24,25 +25,40 @@ const SignUpPage = () => {
     const {fullName, email, password} = formData;
 
     // validate name form 
-    if (fullName.trim() === "" || email.trim() === "" || password.trim() === ""){
-      toast.error("All inputs are required.")
-      console.log("error!")
-      return false
-    }
+    if (!fullName.trim())
+      toast.error("Full Name is required");
+    else if (!email.trim())
+      toast.error("Email is required");
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      toast.error("Invalid email format");
+    else if (!password.trim())
+      toast.error("Password is required");
+    else if (password.trim().length < 6)
+      toast.error("Password must be at least 6 characters");
+    else 
+      return true; 
 
-    if (password.trim().length < 6){
-      toast.error("Password must be at least 6 characters")
-      return false
-    }
-
-    return true;
+    return false; 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); 
 
     if (validateForm(e)) {
-      console.log(formData) 
+      try {
+        toast.promise(
+          async () => {
+            const res = await axios.post('http://localhost:5001/api/auth/signup', formData);
+          }, {
+            loading: "Creating Account...",
+            success: "Account Created",
+            error: (res) => `${res.response.data.message}`,
+          }
+        )
+      } catch (error) {
+        console.error("error in sign up", error)
+      }
+
     }
   }
 
