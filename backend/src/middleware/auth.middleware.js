@@ -18,6 +18,7 @@ export const protectRoute = async (req, res, next) => {
                 if (user) {
                     req.user = user;    // will make user accessible to protected functions
                     next();
+                    return 
                 }
             }
         }

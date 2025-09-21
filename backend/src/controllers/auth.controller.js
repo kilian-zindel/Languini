@@ -1,6 +1,7 @@
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import { generateToken } from '../lib/utils.js'
+import cloudinary from '../lib/cloudinary.js'
 
 export const signup = async (req, res) => {
     try {
@@ -117,7 +118,7 @@ export const updateProfile = async (req, res) => {
                 userId, 
                 { profilePic: uploadResponse.secure_url }, 
                 { new: true });
-            res.status(200).json(updatedUser)
+            return res.status(200).json(updatedUser)
         }
 
         return res.status(400).json({ message: "Error occured while updating Profile Picture." })        

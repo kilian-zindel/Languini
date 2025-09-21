@@ -5,7 +5,6 @@ import { MessageSquare, Eye, EyeOff, Loader2 } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import AuthImagePattern from '../components/AuthImagePattern';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
 
 const SignUpPage = () => {
 
@@ -45,20 +44,15 @@ const SignUpPage = () => {
     e.preventDefault(); 
 
     if (validateForm(e)) {
-      try {
-        toast.promise(
-          async () => {
-            const res = await axios.post('http://localhost:5001/api/auth/signup', formData);
-          }, {
-            loading: "Creating Account...",
-            success: "Account Created",
-            error: (res) => `${res.response.data.message}`,
-          }
-        )
-      } catch (error) {
-        console.error("error in sign up", error)
-      }
-
+      signup(formData);
+      // toast.promise(
+      //   signup(formData), 
+      //   {
+      //     loading: "Creating Account...",
+      //     success: "Account Created",
+      //     error: (error) => `${error.response.data.message}`,
+      //   }
+      // )
     }
   }
 

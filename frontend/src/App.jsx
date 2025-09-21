@@ -32,11 +32,11 @@ const App = () => {
   }
 
   return (
-    <>
-      <Toaster
+    <div>
+      {/* <Toaster
         position="top-center"
         reverseOrder={false}
-      ></Toaster>
+      ></Toaster> */}
       <div className="flex-col h-screen">
         <Navbar />
         <div className="h-full">
@@ -50,8 +50,8 @@ const App = () => {
           </Routes>
         </div>
       </div>
-
-    </>
+      <Toaster />
+    </div>
   )
 }
 
