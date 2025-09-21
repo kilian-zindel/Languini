@@ -12,11 +12,12 @@ import { Toaster } from 'react-hot-toast'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthStore } from './store/useAuthStore.js'
+import { useThemeStore } from './store/useThemeStore.js'
 import { useEffect } from 'react'
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore() 
-
+  const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
@@ -32,12 +33,12 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div data-theme={theme}>
       {/* <Toaster
         position="top-center"
         reverseOrder={false}
       ></Toaster> */}
-      <div className="flex-col h-screen">
+      <div className="flex-col h-full">
         <Navbar />
         <div className="h-full">
           <Routes>
