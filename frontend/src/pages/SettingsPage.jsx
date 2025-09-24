@@ -14,6 +14,7 @@ const SettingsPage = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
+    <div className="bg-base-100 w-full h-full overflow-y-auto">
     <div className="conatiner mx-auto px-4 pt-20 max-w-5xl">
       {/* theme selection section */}
       <div className="space-y-6">
@@ -108,6 +109,7 @@ const SettingsPage = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

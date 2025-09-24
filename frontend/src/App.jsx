@@ -10,7 +10,7 @@ import Navbar from './components/Navbar'
 import Loader from './components/Loader.jsx'
 import { Toaster } from 'react-hot-toast'
 
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom'
 import { useAuthStore } from './store/useAuthStore.js'
 import { useThemeStore } from './store/useThemeStore.js'
 import { useEffect } from 'react'
@@ -33,26 +33,23 @@ const App = () => {
   }
 
   return (
-    <div data-theme={theme}>
-      {/* <Toaster
-        position="top-center"
-        reverseOrder={false}
-      ></Toaster> */}
-      <div className="flex-col h-full">
+    <BrowserRouter>
+      <div data-theme={theme} 
+        className="bg-base-100 w-screen min-h-screen flex flex-col">
+        <Toaster />
         <Navbar />
-        <div className="h-full">
+        <div className="flex flex-col flex-grow mt-16">
           <Routes>
             <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} /> 
             <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} /> 
-            {/* <Route path='/signup' element={<SignUpPage />} /> */}
             <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} /> 
             <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} /> 
-            <Route path="/settings" element={<SettingsPage />} /> 
+          <Route path="/settings" element={<SettingsPage />} /> 
           </Routes>
         </div>
+        <footer className="h-16"></footer>
       </div>
-      <Toaster />
-    </div>
+    </BrowserRouter>
   )
 }
 

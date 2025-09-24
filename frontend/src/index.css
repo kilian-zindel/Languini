@@ -3,7 +3,24 @@
   themes: all
 };
 
-/* html, body, #root {
+html, body, #root {
   height: 100%;
-} */
+  width: 100%;
+  /* overflow: hidden; */
+  margin: 0; 
+  padding: 0;
+}
+
+.superheading {
+  @apply text-2x font-bold
+}
+
+.heading {
+  @apply text-xl font-semibold 
+}
+
+.subheading {
+  @apply text-lg font-medium
+}
+
 
