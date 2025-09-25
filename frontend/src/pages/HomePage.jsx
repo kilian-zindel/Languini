@@ -1,11 +1,26 @@
 import React from 'react'
-import { Users, Check } from 'lucide-react'
+import { Users, Check, MessageSquare, X } from 'lucide-react'
 import { useState } from 'react'
 
+/* TODO: 
+- [ ] Load Real Contacts
+- [ ] Profile Pic 
+- [ ] Replace Languini Logo 
+*/
+
+const Placeholder = () => {
+  return <div className="h-full flex items-center justify-center">
+    <div className="flex flex-col gap-4 text-center">
+      <div className="flex items-center justify-center bg-primary/10 size-16 rounded-xl mx-auto">
+        <MessageSquare className="w-10 h-10 text-primary"/>
+      </div>
+      <h1 className="text-2xl font-bold mt-2">Welcome to Languini!</h1>
+      <p className="text-base-content/70 text-sm">Select a conversation from the sidebar to start practicing</p>
+    </div>
+  </div>
+}
+
 const Contact = ({profilePic, fullName, isOnline}) => {
-
-  console.log(fullName)
-
   return <div className="flex flex-row items-center gap-2"> 
     <div className="size-12 bg-base-300 rounded-full">
       {/* Profile Pic */}
@@ -17,10 +32,51 @@ const Contact = ({profilePic, fullName, isOnline}) => {
   </div>
 }
 
+const Message = ({user, message, sent}) => {
+  return <div className="flex flex-row items-center gap-2"> 
+    <div className="size-12 bg-base-300 rounded-full">
+      {/* Profile Pic */}
+    </div>
+    <div className="">
+      <p className="text-xs font-light text-white/50">{`${sent.getHours()}:${sent.getMinutes()}`}</p>
+      <h1 className="text-sm font-semibold tracking-tight max-w-120 text-nowrap overflow-clip">{message}</h1>
+    </div>
+  </div>
+}
+
+const Messages = ({profilePic, fullName, isOnline, handleX}) => {
+
+  // console.log("CONTACT", contact)
+
+  const date = new Date()
+
+  const MESSAGES = [
+    {user: false, message: "Hi hows is going?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+    {user: true, message: "good and you?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+    {user: false, message: "Just hangin in Inwood, watchin sum backetball", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+    {user: true, message: "How so far...im in BK", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+  ]
+
+  console.log(MESSAGES)
+
+  return <div className="flex flex-col">
+    {/* Header Section */}
+    <div className="flex flex-row place-content-between">
+      <Contact {...{profilePic, fullName, isOnline}} />
+      <div className="cursor-pointer text-white/70" onClick={handleX}>
+        <X />
+      </div>
+    </div>
+    {/* Messages Section */}
+  </div>
+}
+
 const HomePage = () => {
 
   const [onlineOnly, setOnlineOnly] = useState(false)
   const [onlineUsers, setOnlineUsers] = useState(0) 
+  // const [contact, setContact] = useState(null) 
+  const [contact, setContact] = useState({profilePic: "", fullName: "Kilian Zindel", isOnline: true})
 
   const CONTACTS = [
     {profilePic: "", fullName: "Jane Doe", isOnline: false},
@@ -40,13 +96,17 @@ const HomePage = () => {
     {profilePic: "", fullName: "Olivia Miller", isOnline: false},
   ]
 
+  const handleX = () => {
+    setContact(null)
+  }
+
   const handleCheckbox = () => {
     setOnlineOnly(!onlineOnly)
   }
 
   return (
-    <div className="h-[calc(100vh-var(--spacing)*24)] container flex flex-row flex-grow mx-auto mt-4">
-      {/* contacts section  */}
+    <div className="h-[calc(100vh-var(--spacing)*24)] container flex flex-row flex-grow max-w-5xl mx-auto mt-4">
+      {/* Sidebar  */}
       <div className="flex flex-col bg-base-200 flex-3 p-4 gap-2">
 
         {/* Contacts Heading */}
@@ -74,16 +134,18 @@ const HomePage = () => {
 
         {/* List of Contacts */}
         <div className="h-full overflow-scroll space-y-4 mt-6">
-            { CONTACTS.map((c) => {
+            { CONTACTS.map((c, i) => {
               if (!onlineOnly || (onlineOnly && c.isOnline))
-                return <Contact {...c} /> 
+                return <Contact key={i} {...c} /> 
             })}
         </div>
-
-
       </div>
+
       {/* messages section */}
-      <div className="bg-base-300 flex-9"></div>
+      <div className="bg-base-200 flex-9 p-4">
+        { !contact && <Placeholder/>}
+        { contact && <Messages handleX={handleX} {...contact} />}
+      </div>
     </div>
   )
 }
