@@ -33,20 +33,29 @@ const Contact = ({profilePic, fullName, isOnline}) => {
 }
 
 const Message = ({user, message, sent}) => {
-  return <div className="flex flex-row items-center gap-2"> 
-    <div className="size-12 bg-base-300 rounded-full">
-      {/* Profile Pic */}
+
+  console.log(`MESSAGE ${user} ${message} ${sent}`)
+
+  return <div className={`chat ${user ? "chat-end" : "chat-start"}`}>
+    <div className="chat-image avatar">
+      <div className="w-10 rounded-full">
+        <img
+          alt="Tailwind CSS chat bubble component"
+          src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+        />
+      </div>
     </div>
-    <div className="">
-      <p className="text-xs font-light text-white/50">{`${sent.getHours()}:${sent.getMinutes()}`}</p>
-      <h1 className="text-sm font-semibold tracking-tight max-w-120 text-nowrap overflow-clip">{message}</h1>
+    <div className="chat-header">
+      <time className="text-xs font-light text-white/50 mb-1">
+        {`${sent.getHours()}:${sent.getMinutes()}`}
+      </time>
     </div>
+    <div className="chat-bubble text-white/80">{message}</div>
+    {/* <div className="chat-footer opacity-50">Delivered</div> */}
   </div>
 }
 
 const Messages = ({profilePic, fullName, isOnline, handleX}) => {
-
-  // console.log("CONTACT", contact)
 
   const date = new Date()
 
@@ -57,8 +66,6 @@ const Messages = ({profilePic, fullName, isOnline, handleX}) => {
     {user: true, message: "How so far...im in BK", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
   ]
 
-  console.log(MESSAGES)
-
   return <div className="flex flex-col">
     {/* Header Section */}
     <div className="flex flex-row place-content-between">
@@ -68,6 +75,12 @@ const Messages = ({profilePic, fullName, isOnline, handleX}) => {
       </div>
     </div>
     {/* Messages Section */}
+    <div className="mt-8">
+    { MESSAGES.map((message, index) => {
+      return <Message key={index} {...message} />
+      // <Message key={index} {...message} /> 
+    })}
+    </div>
   </div>
 }
 
