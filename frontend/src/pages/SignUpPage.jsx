@@ -45,14 +45,6 @@ const SignUpPage = () => {
 
     if (validateForm(e)) {
       signup(formData);
-      // toast.promise(
-      //   signup(formData), 
-      //   {
-      //     loading: "Creating Account...",
-      //     success: "Account Created",
-      //     error: (error) => `${error.response.data.message}`,
-      //   }
-      // )
     }
   }
 

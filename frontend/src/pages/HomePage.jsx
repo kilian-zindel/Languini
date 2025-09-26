@@ -1,12 +1,6 @@
 import React from 'react'
-import { Users, Check, MessageSquare, X } from 'lucide-react'
+import { Users, Check, MessageSquare, X, Image, Send } from 'lucide-react'
 import { useState } from 'react'
-
-/* TODO: 
-- [ ] Load Real Contacts
-- [ ] Profile Pic 
-- [ ] Replace Languini Logo 
-*/
 
 const Placeholder = () => {
   return <div className="h-full flex items-center justify-center">
@@ -34,7 +28,8 @@ const Contact = ({profilePic, fullName, isOnline}) => {
 
 const Message = ({user, message, sent}) => {
 
-  console.log(`MESSAGE ${user} ${message} ${sent}`)
+  const hours = sent.getHours().toString().padStart(2, '0');
+  const minutes = sent.getMinutes().toString().padStart(2, '0');
 
   return <div className={`chat ${user ? "chat-end" : "chat-start"}`}>
     <div className="chat-image avatar">
@@ -47,7 +42,7 @@ const Message = ({user, message, sent}) => {
     </div>
     <div className="chat-header">
       <time className="text-xs font-light text-white/50 mb-1">
-        {`${sent.getHours()}:${sent.getMinutes()}`}
+        {`${hours}:${minutes}`}
       </time>
     </div>
     <div className="chat-bubble text-white/80">{message}</div>
@@ -55,18 +50,43 @@ const Message = ({user, message, sent}) => {
   </div>
 }
 
-const Messages = ({profilePic, fullName, isOnline, handleX}) => {
+const Messages = ({profilePic, fullName, isOnline, handleX, sendMessage}) => {
 
-  const date = new Date()
+  // const MESSAGES = [
+  //   {user: false, message: "Hi hows is going?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+  //   {user: true, message: "good and you?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+  //   {user: false, message: "Just hangin in Inwood, watchin sum backetball", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+  //   {user: true, message: "How so far...im in BK", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
+  // ]
+  const date = new Date(2025, 1, 1, 1, 6, 5, 0, 0)
 
-  const MESSAGES = [
+  const [message, setMessage] = useState("")
+  const [isSending, setIsSending] = useState(false)
+  const [messages, setMessages] = useState([
     {user: false, message: "Hi hows is going?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
     {user: true, message: "good and you?", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
     {user: false, message: "Just hangin in Inwood, watchin sum backetball", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
     {user: true, message: "How so far...im in BK", sent: new Date(date.setMinutes(date.getMinutes() + 1))},
-  ]
+  ])
 
-  return <div className="flex flex-col">
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0] 
+    if (file)
+      console.log("SELECTED FILE", file.name)
+  }
+
+  const handleSendButton = (e) => {
+    if (message !== ""){
+      setIsSending(true) 
+      setMessages([...messages, {user: true, message: message, sent: new Date()}])
+      setMessage("")
+      
+      // send message to via axios
+    }
+  }
+
+  return <>
     {/* Header Section */}
     <div className="flex flex-row place-content-between">
       <Contact {...{profilePic, fullName, isOnline}} />
@@ -75,13 +95,51 @@ const Messages = ({profilePic, fullName, isOnline, handleX}) => {
       </div>
     </div>
     {/* Messages Section */}
-    <div className="mt-8">
-    { MESSAGES.map((message, index) => {
+    <div className="mt-8 grow">
+    { messages.map((message, index) => {
       return <Message key={index} {...message} />
       // <Message key={index} {...message} /> 
     })}
     </div>
-  </div>
+    {/* Send Message Section */}
+    <div className="w-full flex flex-row gap-2 items-center">
+      <div className="grow p-2 rounded-2xl border-1 border-white/30 text-white/90">
+        <input 
+          type="text" 
+          placeholder="Send a message..." 
+          onChange={(e) => {setMessage(e.target.value)}}
+          onKeyDown={(e) => {if (e.key === 'Enter') handleSendButton()}}
+          value={message}
+          className="w-full focus:ring-0 focus:outline-none"></input>
+      </div>
+
+      {/* Image Input */}
+      <div className="bg-base-300 p-2 rounded-full">
+        <input 
+          type="file"
+          id="imageUpload"
+          onChange={handleImageUpload}
+          className="hidden"
+        />
+        <label
+          htmlFor="imageUpload"
+          className=""
+          title="Upload Image"
+        >
+          <Image />
+        </label>
+      </div>
+
+      {/* Send Button */}
+      <button 
+        disabled={isSending}
+        className="bg-base-300 rounded-full p-2"
+        onClick={handleSendButton}>
+        <Send />
+      </button>
+
+    </div>
+  </>
 }
 
 const HomePage = () => {
@@ -90,6 +148,7 @@ const HomePage = () => {
   const [onlineUsers, setOnlineUsers] = useState(0) 
   // const [contact, setContact] = useState(null) 
   const [contact, setContact] = useState({profilePic: "", fullName: "Kilian Zindel", isOnline: true})
+  // const [message, setMessage] = useState("Send a message...")
 
   const CONTACTS = [
     {profilePic: "", fullName: "Jane Doe", isOnline: false},
@@ -115,6 +174,10 @@ const HomePage = () => {
 
   const handleCheckbox = () => {
     setOnlineOnly(!onlineOnly)
+  }
+
+  const sendMessage = (message) => {
+
   }
 
   return (
@@ -155,7 +218,7 @@ const HomePage = () => {
       </div>
 
       {/* messages section */}
-      <div className="bg-base-200 flex-9 p-4">
+      <div className="bg-base-200 flex-9 p-4 flex flex-col">
         { !contact && <Placeholder/>}
         { contact && <Messages handleX={handleX} {...contact} />}
       </div>
