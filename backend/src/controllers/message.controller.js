@@ -5,7 +5,8 @@ import User from '../models/user.model.js';
 export const getUsers = async (req,res) => {
     try {
         const userId = req.user._id;
-        const users = User.find({ _id: { $ne: userId } }).select("-password")
+
+        const users = await User.find({ _id: { $ne: userId } }).select("-password")
 
         if (users) 
             return res.status(200).json(users)
@@ -18,10 +19,13 @@ export const getUsers = async (req,res) => {
 // GET /:id - get messages between user and :id contact 
 export const getMessages = async (req,res) => {
     try {
-        const { id:contactId } = req.params.id 
-        const { userId } = req.user._id 
+        const { id:contactId } = req.params
+        const userId = req.user._id 
 
-        const messages = Message.find({
+        console.log("RECEIVER ID:", contactId)
+        console.log("SENDER ID:", userId)
+
+        const messages = await Message.find({
             $or: [
                 { senderId: contactId, receiverId: userId },
                 { senderId: userId, receiverId: contactId }
@@ -38,9 +42,15 @@ export const getMessages = async (req,res) => {
 // POST /send/:id - send message to :id contact 
 export const sendMessage = async (req,res) => {
     try {
-        const { id:receiverId } = req.params.id;
-        const { senderId } = req.user._id;
+        const { id:receiverId } = req.params
+        const senderId = req.user._id 
         const { text, image } = req.body; 
+
+        console.log("RECEIVER ID:", receiverId)
+        console.log("SENDER ID:", senderId)
+        console.log("TEXT:", text)
+
+
 
         let imageURL;
         if (image) {
@@ -61,7 +71,7 @@ export const sendMessage = async (req,res) => {
 
         // todo: real time functionality goes here
 
-        req.status(201).json(newMessage)
+        return res.status(201).json(newMessage)
         
     } catch (error) {
         console.error("An error occured in sendMessage:", error)
