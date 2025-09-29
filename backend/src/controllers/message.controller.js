@@ -30,8 +30,9 @@ export const getMessages = async (req,res) => {
                 { senderId: contactId, receiverId: userId },
                 { senderId: userId, receiverId: contactId }
             ]
-        })
-
+        }).sort({ createdAt: -1 }) // sort newest -> oldest
+        .limit(50) 
+        
         return res.status(200).json(messages); 
     } catch (error) {
         console.error("An error occured in getUsers:", error)
@@ -49,8 +50,6 @@ export const sendMessage = async (req,res) => {
         console.log("RECEIVER ID:", receiverId)
         console.log("SENDER ID:", senderId)
         console.log("TEXT:", text)
-
-
 
         let imageURL;
         if (image) {

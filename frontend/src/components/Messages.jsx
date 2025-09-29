@@ -4,18 +4,27 @@ import Contact from '../components/Contact.jsx'
 import { useState, useEffect } from 'react'
 import { axiosInstance } from '../lib/axios.js'
 import { getMessages } from '../../../backend/src/controllers/message.controller.js'
+import { useAuthStore } from '../store/useAuthStore.js'
 
-const Message = ({user, message, sent}) => {
+const Message = ({senderId, receiverId, text, image, createdAt, profilePic}) => {
 
+  const { authUser } = useAuthStore()
+  const sent = new Date(createdAt) 
   const hours = sent.getHours().toString().padStart(2, '0');
   const minutes = sent.getMinutes().toString().padStart(2, '0');
 
-  return <div className={`chat ${user ? "chat-end" : "chat-start"}`}>
+  return <div className={`chat ${senderId === authUser._id ? "chat-end" : "chat-start"}`}>
     <div className="chat-image avatar">
       <div className="w-10 rounded-full">
         <img
           alt="Tailwind CSS chat bubble component"
-          src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+          src={( 
+            senderId === authUser._id 
+            ? 
+              (authUser.profilePic || "/avatar.png") 
+            : 
+              (profilePic || "/avatar.png" ) 
+          )}
         />
       </div>
     </div>
@@ -24,7 +33,7 @@ const Message = ({user, message, sent}) => {
         {`${hours}:${minutes}`}
       </time>
     </div>
-    <div className="chat-bubble text-white/80">{message}</div>
+    <div className="chat-bubble text-white/80">{text}</div>
     {/* <div className="chat-footer opacity-50">Delivered</div> */}
   </div>
 }
@@ -63,7 +72,7 @@ const Messages = ({contact, handleX}) => {
   const handleSendButton = async (e) => {
     if (message !== ""){
       setIsSending(true) 
-      setMessages([...messages, {user: true, message: message, sent: new Date()}])
+      // setMessages([...messages, {user: true, message: message, sent: new Date()}])
       setMessage("")
       
       // send message to via axios
@@ -73,6 +82,7 @@ const Messages = ({contact, handleX}) => {
           text: message,
           image: null,
         })
+        setMessages([res.data, ...messages])
       } catch (error) {
         console.error("Error in Messages component > handleSendButton", error)
       }
@@ -88,9 +98,9 @@ const Messages = ({contact, handleX}) => {
       </div>
     </div>
     {/* Messages Section */}
-    <div className="mt-8 grow">
+    <div className="mt-4 mb-4 grow overflow-scroll flex flex-col-reverse">
     { !loading && messages.map((message, index) => {
-      return <Message key={index} {...message} />
+      return <Message key={index} {...message} profilePic={contact.profilePic} />
       // <Message key={index} {...message} /> 
     })}
     </div>

@@ -12,7 +12,11 @@ const Contact = ({contact, clickable=true, selected, handleSelectContact}) => {
         handleSelectContact(contact)
     }}> 
     <div className="size-12 bg-base-300 rounded-full">
-      {/* Profile Pic */}
+        <img 
+            src={profilePic || "/avatar.png"} 
+            alt="Profile" 
+            className="size-full object-cover rounded-full"
+        />
     </div>
     <div className="text-left">
       <h1 className="text-sm font-semibold tracking-tight max-w-120 text-nowrap overflow-clip">{fullName}</h1>
