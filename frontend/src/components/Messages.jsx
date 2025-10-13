@@ -7,10 +7,11 @@ import { axiosInstance } from '../lib/axios.js'
 import { useAuthStore } from '../store/useAuthStore.js'
 import { useChatStore } from '../store/useChatStore.js'
 
+const ImageMessage = () => {
+  return <div>Image Message</div>
+}
+
 const Message = ({senderId, receiverId, text, image, createdAt, profilePic}) => {
-  console.log('MOUNT <Message />')
-
-
   const { authUser } = useAuthStore()
   const sent = new Date(createdAt) 
   const hours = sent.getHours().toString().padStart(2, '0');
@@ -41,36 +42,17 @@ const Message = ({senderId, receiverId, text, image, createdAt, profilePic}) => 
   </div>
 }
 
-const Messages = () => {
-  console.log("MOUNT <Messages />")
 
+
+const Messages = () => {
+  const { onlineUsers } = useAuthStore()
   const { selectedUser, setSelectedUser, messages, isMessagesLoading, isMessageSending, getMessages, sendMessage } = useChatStore()
   const {profilePic, fullName, isOnline=false} = selectedUser
-
-  // const [loading, setLoading] = useState(true) 
-  // const date = new Date(2025, 1, 1, 1, 6, 5, 0, 0)
-
   const [message, setMessage] = useState("")
-  // const [isSending, setIsSending] = useState(false)
-  // const [messages, setMessages] = useState([])
 
   useEffect(() => {
     getMessages(selectedUser._id)
   }, [selectedUser])
-
-  // useEffect(() => {
-  //   const getMessages = async () => {
-  //     try {
-  //       setLoading(true) 
-  //       const res = await axiosInstance(`messages/${contact._id}`)
-  //       setMessages(res.data)
-  //       setLoading(false)
-  //     } catch (error) {
-  //       console.error("Error in Messages component > getMessages")
-  //     }
-  //   }
-  //   getMessages() 
-  // }, [contact])
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0] 
@@ -81,21 +63,7 @@ const Messages = () => {
   const handleSendButton = async (e) => {
     if (message !== ""){
       sendMessage(message) 
-      // setIsSending(true) 
-      // setMessages([...messages, {user: true, message: message, sent: new Date()}])
       setMessage("")
-      
-      // send message to via axios
-      // try {
-      //   console.log(contact._id)
-      //   const res = await axiosInstance.post(`messages/send/${contact._id}`, {
-      //     text: message,
-      //     image: null,
-      //   })
-      //   setMessages([res.data, ...messages])
-      // } catch (error) {
-      //   console.error("Error in Messages component > handleSendButton", error)
-      // }
     }
   }
 
@@ -104,7 +72,7 @@ const Messages = () => {
   return <>
     {/* Header Section */}
     <div className="flex flex-row place-content-between">
-      <Contact user={selectedUser} clickable={false} />
+      <Contact user={selectedUser} clickable={false} isOnline={onlineUsers.includes(`${selectedUser._id}`)}/>
       <div className="cursor-pointer text-white/70" onClick={() => {setSelectedUser(null)}}>
         <X />
       </div>
@@ -133,12 +101,13 @@ const Messages = () => {
         <input 
           type="file"
           id="imageUpload"
+          disabled
           onChange={handleImageUpload}
           className="hidden"
         />
         <label
           htmlFor="imageUpload"
-          className=""
+          className="opacity-60" // greyed out look 
           title="Upload Image"
         >
           <Image />

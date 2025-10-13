@@ -2,12 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { useChatStore } from '../store/useChatStore.js'
 
-const Contact = ({user, clickable=true}) => {
+const Contact = ({user, clickable=true, isOnline=false}) => {
   // console.log(`MOUNT <Contact user="${user.fullName}" />`)
 
   // const [ user, setUser ] = useState(contact) 
   const { selectedUser, setSelectedUser } = useChatStore()
-  const { profilePic, fullName, isOnline=false } = user
+  const { profilePic, fullName } = user
   const selected = (selectedUser === user && clickable)
   
   return <button 

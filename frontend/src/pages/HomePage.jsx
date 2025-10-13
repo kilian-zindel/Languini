@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Messages from '../components/Messages.jsx'
 import Contact from '../components/Contact.jsx'
 import { useChatStore } from '../store/useChatStore.js'
+import { useAuthStore } from '../store/useAuthStore.js'
 import SidebarSkeleton from '../components/skeletons/SidebarSkeleton.jsx'
 
 const Placeholder = () => {
@@ -21,17 +22,19 @@ const Placeholder = () => {
 const HomePage = () => {
 
   const { isUsersLoading } = useChatStore()
+  const { onlineUsers } = useAuthStore() 
   const { users, selectedUser, getUsers } = useChatStore()
 
   const [onlineOnly, setOnlineOnly] = useState(false)
-  const [onlineUsers, setOnlineUsers] = useState(0) 
-
-
 
   useEffect(() => {
     console.log('MOUNT <HomePage />')
     getUsers() 
   }, []) // run run after mounting
+
+  // const isOnline = (user) => {
+    
+  // }
 
   // run after rerender 
   useEffect(() => console.log("RENDER <HomePage />"))
@@ -67,14 +70,15 @@ const HomePage = () => {
               )}
             </div>
             <span className="font-medium text-xs tracking-tighter text-base-content">Show online only</span>
-            <span className="font-medium text-xs tracking-tighter text-white/30">{`(${onlineUsers} online)`}</span>
+            <span className="font-medium text-xs tracking-tighter text-white/30">{`(${onlineUsers?.length - 1 || 0} online)`}</span>
           </label>
 
           {/* List of Contacts */}
           <div className="h-full overflow-scroll space-y-0 mt-6">
               { !isUsersLoading && users.map((user, i) => {
-                if (!onlineOnly || (onlineOnly && user.isOnline))
-                  return <Contact key={i} user={user} /> 
+                const isOnline = onlineUsers.includes(`${user._id}`)
+                if (!onlineOnly || (onlineOnly && (onlineOnly && isOnline)))
+                  return <Contact key={i} user={user} isOnline={isOnline} /> 
               })}
           </div>
       </div>
