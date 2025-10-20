@@ -81,22 +81,22 @@ export const useChatStore = create((set, get) => ({
         }
     },
 
-    handleNewMessage: (message) => {
-        console.log("New Message Receiver:", message)
-        const { sentFrom: user, text: msg, img } = message 
-        console.log("DATA\nUSER", user, "\nMESSAGE", msg)
+    handleNewMessage: (msg) => {
+        // console.log("New Message Receiver:", message)
+        // const { sentFrom: user, text: msg, img } = message 
+        // console.log("DATA\nUSER", user, "\nMESSAGE", msg)
         const { selectedUser, messages, unread } = get();
 
-        console.log("USER", user, typeof user)
-        console.log("SUSER", selectedUser, typeof selectedUser)
-        console.log("SAME?", user == selectedUser)
+        // console.log("USER", user, typeof user)
+        // console.log("SUSER", selectedUser, typeof selectedUser)
+        // console.log("SAME?", user == selectedUser)
 
-        if (user == selectedUser._id){
+        if (msg.senderId == selectedUser._id){
             console.log("updating messages")
             set({ messages: [msg, ...messages]})
         }
         else 
-            set({ unread: [...unread, user]})
+            set({ unread: [...unread, msg.senderId]})
     },
 
     setSelectedUser: (user) => set({ selectedUser: user }),

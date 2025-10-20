@@ -69,20 +69,14 @@ export const sendMessage = async (req,res) => {
 
         console.log("message saved in database")
 
-        // todo: real time functionality goes here
         // emit event to receiver id
         const receiverSocketId = userSocketMap[receiverId];
         if (receiverSocketId){
-            console.log("sending from server to receiver:", receiverSocketId)
-            io.to(receiverSocketId).emit("newMessage", {
-                sentFrom: senderId,
-                text: text, 
-                img: imageURL,
-            })
+            // console.log("sending from server to receiver:", receiverSocketId)
+            io.to(receiverSocketId).emit("newMessage", newMessage)
         } else {
             console.log("ERROR NOT sending from server to receiver")
         }
-
 
         return res.status(201).json(newMessage)
         
