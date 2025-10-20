@@ -2,10 +2,12 @@ import { create } from "zustand"
 import { axiosInstance } from "../lib/axios";
 import { toast } from 'react-hot-toast'
 import { io } from 'socket.io-client'
+import { useChatStore } from './useChatStore.js'
 
 const BASE_URL = 'http://localhost:5001'
 
 export const useAuthStore = create((set, get) => ({
+
     authUser: null, 
     isSigningUp: false,
     isLoggingIn: false, 
@@ -96,6 +98,10 @@ export const useAuthStore = create((set, get) => ({
         socket.on("getOnlineUsers", (userIds) => {
             set({ onlineUsers: userIds })
             console.log(get().onlineUsers)
+        })
+        socket.on("newMessage", (msg) => {
+            console.log("received new message, calling handler")
+            useChatStore.getState().handleNewMessage(msg)
         })
     },
 

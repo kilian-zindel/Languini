@@ -1,5 +1,6 @@
 import Message from '../models/message.model.js'
 import User from '../models/user.model.js';
+import { io, userSocketMap } from '../lib/socket.js';
 
 // GET /users - get all users except self
 export const getUsers = async (req,res) => {
@@ -47,9 +48,7 @@ export const sendMessage = async (req,res) => {
         const senderId = req.user._id 
         const { text, image } = req.body; 
 
-        console.log("RECEIVER ID:", receiverId)
-        console.log("SENDER ID:", senderId)
-        console.log("TEXT:", text)
+        console.log("SERVER MESSAGE:", text, "FROM ", senderId, "TO ", receiverId)
 
         let imageURL;
         if (image) {
@@ -68,7 +67,22 @@ export const sendMessage = async (req,res) => {
         // send message by adding it to the database
         await newMessage.save(); 
 
+        console.log("message saved in database")
+
         // todo: real time functionality goes here
+        // emit event to receiver id
+        const receiverSocketId = userSocketMap[receiverId];
+        if (receiverSocketId){
+            console.log("sending from server to receiver:", receiverSocketId)
+            io.to(receiverSocketId).emit("newMessage", {
+                sentFrom: senderId,
+                text: text, 
+                img: imageURL,
+            })
+        } else {
+            console.log("ERROR NOT sending from server to receiver")
+        }
+
 
         return res.status(201).json(newMessage)
         

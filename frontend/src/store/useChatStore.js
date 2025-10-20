@@ -1,9 +1,11 @@
 import { create } from 'zustand'
 import { axiosInstance } from '../lib/axios'
 import { toast } from 'react-hot-toast'
+import { useAuthStore } from './useAuthStore.js'
 import axios from 'axios';
 
 export const useChatStore = create((set, get) => ({
+    unread: [],
     messages: [],
     users: [],
     selectedUser: null,
@@ -50,6 +52,17 @@ export const useChatStore = create((set, get) => ({
 
         set({ isMessageSending: true })
         try {
+
+            // emit new message event
+            // const { authUser, socket } = useAuthStore.getState()
+            // socket?.emit('newMessage', {
+            //     sentFrom: authUser._id,
+            //     sendTo: selectedUser._id,
+            //     text: msg,
+            //     image: img,
+            // })
+
+            // post message to server
             const res = await axiosInstance.post(
                 // post message to DB 
                 `messages/send/${selectedUser._id}`, 
@@ -66,6 +79,24 @@ export const useChatStore = create((set, get) => ({
         } finally {
             set({ isMessageSending: false })
         }
+    },
+
+    handleNewMessage: (message) => {
+        console.log("New Message Receiver:", message)
+        const { sentFrom: user, text: msg, img } = message 
+        console.log("DATA\nUSER", user, "\nMESSAGE", msg)
+        const { selectedUser, messages, unread } = get();
+
+        console.log("USER", user, typeof user)
+        console.log("SUSER", selectedUser, typeof selectedUser)
+        console.log("SAME?", user == selectedUser)
+
+        if (user == selectedUser._id){
+            console.log("updating messages")
+            set({ messages: [msg, ...messages]})
+        }
+        else 
+            set({ unread: [...unread, user]})
     },
 
     setSelectedUser: (user) => set({ selectedUser: user }),
