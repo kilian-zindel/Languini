@@ -9,12 +9,21 @@ import messageRoutes from './routes/message.route.js';
 import { connectDB } from './lib/db.js';
 import { app, server } from './lib/socket.js';
 
+// import path from "path"
+
+// dotenv.config();    // allows access to .env variables using process.env.varName
+
+// const PORT = process.env.PORT;
+// const __dirname = path.resolve();
+
 import path from "path"
+import { fileURLToPath } from 'url'; // ⬅️ Add this import
 
 dotenv.config();    // allows access to .env variables using process.env.varName
 
 const PORT = process.env.PORT;
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url); // ⬅️ Add this
+const __dirname = path.dirname(__filename); // ⬅️ Change this line
 
 connectDB(process.env.MONGODB_URI)
 
@@ -32,10 +41,15 @@ app.use("/api/messages", messageRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+//   app.get("/*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+//   });
+// This regex matches any path that does NOT start with /api
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../../frontend", "dist", "index.html"));
   });
 }
+
 
 server.listen(PORT, () => {
   console.log("server is running on PORT:" + PORT);
