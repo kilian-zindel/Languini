@@ -16,7 +16,7 @@ dotenv.config();    // allows access to .env variables using process.env.varName
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-// connectDB(process.env.MONGODB_URI)
+connectDB(process.env.MONGODB_URI)
 
 app.use(express.json()) // extract json data from post request body 
 app.use(cookieParser()) // can parse Cookies 
@@ -39,5 +39,4 @@ if (process.env.NODE_ENV === "production") {
 
 server.listen(PORT, () => {
   console.log("server is running on PORT:" + PORT);
-  connectDB(process.env.MONGODB_URI);
 });
