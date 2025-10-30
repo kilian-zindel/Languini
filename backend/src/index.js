@@ -14,7 +14,7 @@ import path from "path"
 dotenv.config();    // allows access to .env variables using process.env.varName
 
 const PORT = process.env.PORT;
-const __dirname = app.resolve();
+const __dirname = path.resolve();
 
 connectDB(process.env.MONGODB_URI)
 
