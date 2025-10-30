@@ -21,16 +21,6 @@ io.on("connection", (socket) => {
     // io.emit() sends events to all connected users 
     io.emit("getOnlineUsers", Object.keys(userSocketMap))
 
-    // socket.on("newMessage", (msg) => {
-    //     const { sendFrom, userId, text, img } = msg;
-    //     receiverSocket = userSocketMap[userId]
-    //     receiverSocket.emit('newMessage', {
-    //         sentFrom: sentFrom,
-    //         text: text, 
-    //         img, img,
-    //     })
-    // })
-
     socket.on("disconnect", () => {
         console.log("A user disconnected")
         delete userSocketMap[userId]

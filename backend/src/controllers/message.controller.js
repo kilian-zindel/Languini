@@ -23,9 +23,6 @@ export const getMessages = async (req,res) => {
         const { id:contactId } = req.params
         const userId = req.user._id 
 
-        console.log("RECEIVER ID:", contactId)
-        console.log("SENDER ID:", userId)
-
         const messages = await Message.find({
             $or: [
                 { senderId: contactId, receiverId: userId },
@@ -48,8 +45,6 @@ export const sendMessage = async (req,res) => {
         const senderId = req.user._id 
         const { text, image } = req.body; 
 
-        console.log("SERVER MESSAGE:", text, "FROM ", senderId, "TO ", receiverId)
-
         let imageURL;
         if (image) {
             // upload image to cloudinary 
@@ -66,8 +61,6 @@ export const sendMessage = async (req,res) => {
 
         // send message by adding it to the database
         await newMessage.save(); 
-
-        console.log("message saved in database")
 
         // emit event to receiver id
         const receiverSocketId = userSocketMap[receiverId];
