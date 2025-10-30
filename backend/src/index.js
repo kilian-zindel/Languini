@@ -16,7 +16,7 @@ dotenv.config();    // allows access to .env variables using process.env.varName
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
-connectDB(process.env.MONGODB_URI)
+// connectDB(process.env.MONGODB_URI)
 
 app.use(express.json()) // extract json data from post request body 
 app.use(cookieParser()) // can parse Cookies 
@@ -29,14 +29,15 @@ app.use(cors({
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-if (process.env.NODE_ENV==="production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-    
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"))
-    })
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
 server.listen(PORT, () => {
-    console.log(`Server is running on PORT: ${PORT}`)
-})
+  console.log("server is running on PORT:" + PORT);
+  connectDB(process.env.MONGODB_URI);
+});
