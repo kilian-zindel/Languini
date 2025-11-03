@@ -29,7 +29,7 @@ This project demonstrates my abilities in:
 
 ## UI: Messaging Interface
 
-![Messaging Interface Image]('./documentation/screenshots/messages.png')
+![Messaging Interface Image]('documentation/screenshots/messages.png')
 
 ## 🛠️ Key Features 
 
@@ -49,7 +49,7 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 
 ## UI: User Profile Info
 
-![User Profile Info Image]('./documentation/screenshots/profile.png')
+![User Profile Info Image]('documentation/screenshots/profile.png')
 
 <!-- | **AI-Powered Conversation Practice** | Deep, stateful integration with the **OpenAI/Gemini API** for dynamic responses, paired with advanced **server-side state management** to maintain conversation history and context. |
 | **Real-Time Data Flow** | Implementation of **WebSockets** for low-latency, real-time feature delivery (e.g., chat updates) and secure, persistent user connectivity. |
