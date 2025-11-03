@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Languini - Full-Stack AI Language Tutor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f2930d",
+            "background-light": "#f8f7f5",
+            "background-dark": "#221b10",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center px-4 sm:px-8 md:px-20 lg:px-40 py-5">
+<div class="layout-content-container flex w-full max-w-[960px] flex-1 flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 sm:px-10 py-3" id="home">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Languini</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#features">Features</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#how-it-works">How it Works</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#faq">FAQ</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">GitHub</a>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Try the Demo!</span>
+</button>
+</div>
+</header>
+<main class="flex flex-col gap-12 sm:gap-16 md:gap-20">
+<div class="@container py-10 md:py-20">
+<div class="flex flex-col gap-6 px-4 @[480px]:gap-8 items-center text-center">
+<div class="flex flex-col gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-4xl font-bold leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-bold @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                      Full-Stack AI Language Tutor: Node.js REST API with Secure, Custom JWT Authentication
+                    </h1>
+<h2 class="text-white/70 text-base font-normal leading-normal @[480px]:text-lg @[480px]:font-normal @[480px]:leading-normal max-w-3xl mx-auto">
+                      A sophisticated AI-powered language learning application demonstrating robust back-end architecture and dynamic, stateful front-end interactions.
+                    </h2>
+</div>
+<div class="flex-wrap gap-3 flex justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Try the Demo!</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-white/20 transition-colors">
+<span class="truncate">View the Code on GitHub</span>
+</button>
+</div>
+</div>
+<div class="w-full max-w-4xl mt-8 rounded-xl border border-white/10 p-2 shadow-[0_0_40px_rgba(242,147,13,0.15)]">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Screenshot of the Languini application, showing a chat interface with an AI tutor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJhRT8QgukhZTvByu9BvvGao-nEhE1KJIVxaK6Orec2Dli0Oh8sh0IgH0z8lQOY3bbes8vNUuUNxAB4Yu9mMxhOVdvb6s6K1tA2fWEws6nZJntYPgrB1vKtxCcQsGb3zua1HirqIwmoTTMkwhlOyMTUSWAFg3V20E9QOphK-WS4D71ERcKiptSO0AtJpdIsptLH6u7tr9N-cufzgYSOm1Acf_eo7byJm51f34qir68Ie1dRa9Tys04SZbHHSO0i5CZk3lvZuTXTug");'></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-10 px-4 py-10" id="features">
+<div class="flex flex-col gap-4 text-center items-center">
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight sm:text-4xl sm:font-bold sm:leading-tight sm:tracking-[-0.033em] max-w-[720px]">
+                  Key Features &amp; Technical Accomplishments
+                </h1>
+<p class="text-white/70 text-base font-normal leading-normal max-w-[720px]">
+                  Each feature is designed to provide a seamless user experience, powered by a robust and scalable technical implementation.
+                </p>
+</div>
+<div class="overflow-x-auto rounded-xl border border-white/10 bg-[#27221b]">
+<table class="w-full text-left text-sm">
+<thead class="border-b border-white/10 text-xs uppercase text-white/60">
+<tr>
+<th class="px-6 py-3" scope="col">User Benefit</th>
+<th class="px-6 py-3" scope="col">Technical Accomplishment (For Recruiter)</th>
+<th class="px-6 py-3 text-center" scope="col">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-white/10 last:border-b-0">
+<td class="px-6 py-4 font-bold text-white">Practice Conversations with an AI Language Tutor</td>
+<td class="px-6 py-4 text-white/70">Deep integration with the <strong class="text-white/90">OpenAI/Gemini API</strong> for dynamic responses and advanced state management to maintain conversation history.</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">Done</span>
+</td>
+</tr>
+<tr class="border-b border-white/10 last:border-b-0">
+<td class="px-6 py-4 font-bold text-white">Secure &amp; Personalized Learning</td>
+<td class="px-6 py-4 text-white/70">Custom <strong class="text-white/90">JWT authentication</strong> for secure access, middleware for protected routes, and user-specific data handling.</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">Done</span>
+</td>
+</tr>
+<tr class="border-b border-white/10 last:border-b-0">
+<td class="px-6 py-4 font-bold text-white">Track Your Progress</td>
+<td class="px-6 py-4 text-white/70">Complex database schema design, efficient <strong class="text-white/90">CRUD operations</strong> for data persistence, and <strong class="text-white/90">RESTful API</strong> endpoints.</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center rounded-full bg-yellow-500/10 px-2 py-1 text-xs font-medium text-yellow-400 ring-1 ring-inset ring-yellow-500/20">In Progress</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="px-4 py-10" id="how-it-works">
+<h2 class="text-white text-center text-3xl sm:text-4xl font-bold leading-tight tracking-[-0.015em] pb-10 sm:pb-16">How It Works</h2>
+<div class="relative flex flex-col items-start gap-12 md:flex-row md:gap-8">
+<div class="absolute left-6 top-6 bottom-6 w-0.5 bg-white/10 md:top-6 md:left-0 md:right-0 md:bottom-auto md:h-0.5"></div>
+<div class="flex-1 flex gap-6 items-start relative z-10">
+<div class="flex size-12 items-center justify-center rounded-full border-2 border-primary bg-background-dark text-primary text-xl font-bold">1</div>
+<div class="flex flex-col gap-2 pt-2">
+<h3 class="text-lg font-bold text-white">Secure Login &amp; Authentication</h3>
+<p class="text-white/70 text-sm">User credentials are encrypted and validated. A secure **JWT** is generated and sent to the client, enabling access to protected API routes for personalized learning sessions.</p>
+</div>
+</div>
+<div class="flex-1 flex gap-6 items-start relative z-10">
+<div class="flex size-12 items-center justify-center rounded-full border-2 border-primary bg-background-dark text-primary text-xl font-bold">2</div>
+<div class="flex flex-col gap-2 pt-2">
+<h3 class="text-lg font-bold text-white">Client-Server API Interaction</h3>
+<p class="text-white/70 text-sm">The frontend client sends user input to the **Node.js REST API**. The request, authorized by the JWT, is processed, and conversation history is retrieved from the database.</p>
+</div>
+</div>
+<div class="flex-1 flex gap-6 items-start relative z-10">
+<div class="flex size-12 items-center justify-center rounded-full border-2 border-primary bg-background-dark text-primary text-xl font-bold">3</div>
+<div class="flex flex-col gap-2 pt-2">
+<h3 class="text-lg font-bold text-white">Real-Time AI Response</h3>
+<p class="text-white/70 text-sm">The backend securely communicates with the **OpenAI/Gemini API**, sending the user's message and context. The AI generates a tailored response, which is then sent back to the client.</p>
+</div>
+</div>
+<div class="flex-1 flex gap-6 items-start relative z-10">
+<div class="flex size-12 items-center justify-center rounded-full border-2 border-primary bg-background-dark text-primary text-xl font-bold">4</div>
+<div class="flex flex-col gap-2 pt-2">
+<h3 class="text-lg font-bold text-white">Learning Feedback Loop</h3>
+<p class="text-white/70 text-sm">The conversation turn is persisted in the database, updating the user's progress. The frontend state is updated, displaying the new message and completing the learning loop.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-10" id="faq">
+<h2 class="text-white text-center text-3xl sm:text-4xl font-bold leading-tight tracking-[-0.015em] pb-10">Frequently Asked Questions</h2>
+<div class="mx-auto max-w-3xl space-y-4">
+<details class="group rounded-xl border border-white/10 bg-[#27221b] p-6 [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5">
+<h2 class="text-lg font-bold text-white">What is the complete tech stack for this project?</h2>
+<span class="relative size-5 shrink-0">
+<span class="material-symbols-outlined absolute inset-0 opacity-100 group-open:opacity-0 transition-opacity">add</span>
+<span class="material-symbols-outlined absolute inset-0 opacity-0 group-open:opacity-100 transition-opacity">remove</span>
+</span>
+</summary>
+<p class="mt-4 leading-relaxed text-white/70">
+                    The project utilizes a modern full-stack JavaScript architecture: <br/>
+                    - **Frontend:** React, Tailwind CSS, State Management (e.g., Redux Toolkit) <br/>
+                    - **Backend:** Node.js, Express.js <br/>
+                    - **Database:** MongoDB with Mongoose ODM <br/>
+                    - **Authentication:** Custom JWT implementation with bcrypt for password hashing <br/>
+                    - **AI Integration:** OpenAI/Gemini API <br/>
+                    - **Deployment:** Docker, AWS/Vercel
+                  </p>
+</details>
+<details class="group rounded-xl border border-white/10 bg-[#27221b] p-6 [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5">
+<h2 class="text-lg font-bold text-white">What was the biggest technical challenge you overcame?</h2>
+<span class="relative size-5 shrink-0">
+<span class="material-symbols-outlined absolute inset-0 opacity-100 group-open:opacity-0 transition-opacity">add</span>
+<span class="material-symbols-outlined absolute inset-0 opacity-0 group-open:opacity-100 transition-opacity">remove</span>
+</span>
+</summary>
+<p class="mt-4 leading-relaxed text-white/70">
+                    The most significant challenge was designing and implementing the custom JWT authentication from scratch. This involved creating secure token generation, implementing middleware for route protection, handling token expiration and refresh logic, and ensuring that user data was securely associated with each session. It required a deep understanding of stateless authentication flows, security best practices, and asynchronous error handling in a Node.js environment.
+                  </p>
+</details>
+<details class="group rounded-xl border border-white/10 bg-[#27221b] p-6 [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex cursor-pointer items-center justify-between gap-1.5">
+<h2 class="text-lg font-bold text-white">How is user data and session state managed?</h2>
+<span class="relative size-5 shrink-0">
+<span class="material-symbols-outlined absolute inset-0 opacity-100 group-open:opacity-0 transition-opacity">add</span>
+<span class="material-symbols-outlined absolute inset-0 opacity-0 group-open:opacity-100 transition-opacity">remove</span>
+</span>
+</summary>
+<p class="mt-4 leading-relaxed text-white/70">
+                    User data, including credentials (hashed) and conversation history, is stored in a MongoDB database. Session state is managed on the client-side using the JWT stored securely (e.g., in an HttpOnly cookie or local storage). The server remains stateless; every authenticated request includes the JWT, which the backend decodes and verifies to identify the user and authorize access to their specific data, ensuring a secure and scalable architecture.
+                  </p>
+</details>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-white/10 py-8">
+<div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+<p class="text-sm text-white/50">© 2024 Languini. All Rights Reserved.</p>
+<div class="flex gap-4">
+<a aria-label="LinkedIn Profile" class="text-white/50 hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+</svg>
+</a>
+<a aria-label="GitHub Profile" class="text-white/50 hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path>
+</svg>
+</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>
