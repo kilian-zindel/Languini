@@ -27,12 +27,16 @@ This project demonstrates my abilities in:
 
 ---
 
+## UI: Messaging Interface
+
+![Messaging Interface Image]('./documentation/screenshots/messages.png')
+
 ## 🛠️ Key Features 
 
 The core technical accomplishments of Languini, framed from a technical hiring manager's perspective:
 
 | Feature / User Benefit | Technical Accomplishment (The "Proof") | Status |
-| :--- | :--- |
+| :--- | :--- | ---: |
 | **Persistent Data Storage** | Used NoSQL and MongoDB to implement persistent data storage for users and user data. | ✅ Done |
 | **Secure User Authentication** | Implemented sign up, sign in, and logout using JWT and bycrpt, storing user info and encrypted passwords in MongoDB | ✅ Done |
 | **Built a RESTful API** | Provides an API to do CRUD operations on the User and Message Data stored in MongoDB. | ✅ Done |
@@ -43,7 +47,9 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 | **Dictionary of learned words** | Let users add new words to a dictionary. | ⚫ Not Started |
 | **Flashcards** | Allow users to create quizzes from dictionary words, and track learning progress. | ⚫ Not Started |
 
+## UI: User Profile Info
 
+![User Profile Info Image]('./documentation/screenshots/profile.png')
 
 <!-- | **AI-Powered Conversation Practice** | Deep, stateful integration with the **OpenAI/Gemini API** for dynamic responses, paired with advanced **server-side state management** to maintain conversation history and context. |
 | **Real-Time Data Flow** | Implementation of **WebSockets** for low-latency, real-time feature delivery (e.g., chat updates) and secure, persistent user connectivity. |
@@ -60,8 +66,8 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 | **Frontend** | React, Zustand (State Management), TailwindCSS, DaisyUI (Components and Styling) |
 | **Backend** | Node.js, Express.js (REST API) |
 | **Database** | MongoDB |
-| **Security** | Custom JWT/Cookies, bcrypt |
-| **Real-Time** | WebSockets / Socket.IO |
+| **Security** | JWT/Cookies, bcrypt |
+| **Real-Time** | socket.io |
 | **AI Integration** | OpenRouter |
 
 ---
@@ -71,14 +77,14 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 1.  **Secure Authentication:** User registers or logs in. A custom-built process leverages `bcrypt` for password hashing, and a secure **HTTP-only cookie containing a JWT** is used to establish an authenticated, persistent session.
 2.  **RESTful API:** The React client communicates exclusively with the **Node.js/Express.js REST API** to manage all persistent user data. All routes are secured and checked for valid JWTs.
 3.  **AI & State Management:** Conversation requests are sent to the backend, which securely routes the request to the **OpenRouter API**. The context and conversation history is added to ensure the AI remains in character and on-topic.
-4.  **Learning Persistence:** New vocabulary and AI-designed lesson plans will be stored in **MongoDB** using normalized data models for efficient retrieval and review in the dictionary and flashcard components. 
+4.  **Learning Persistence:** New vocabulary and AI-designed lesson plans will be stored in **MongoDB** and accessed in the dictionary and flashcard components. 
 
 ---
 
-## ❓ FAQ for Hiring Managers
+<!-- ## ❓ FAQ for Hiring Managers
 
 **Q: What was the most technically challenging part of this project?**
-**A:** Implementing robust **global state management** using **Zustand**. This involved maintaining the integrity of the dynamic conversation history, profile data, and UI state across various React components while minimizing unnecessary re-renders. It required a deep practical application of React Hooks, component lifecycle, and state normalization to ensure a performant, low-latency user experience.
+**A:** **State management** in React.js was the most technically challenging part of this project. This project helped me get much more comfortable with HTML/CSS and React Components.  This involved maintaining the integrity of the dynamic conversation history, profile data, and UI state across various React components while minimizing unnecessary re-renders. It required a deep practical application of React Hooks, component lifecycle, and state normalization to ensure a performant, low-latency user experience. -->
 
 <!-- Q: How did you handle rate limiting or cost management when integrating the AI API? A: I implemented server-side request handling to manage and validate all AI calls before they reach the API provider. For production readiness, I would integrate a basic token counter to monitor usage per session and implement a leaky bucket rate limiter to prevent abuse or excessive spending, ensuring efficient use of the API resource.
 
