@@ -1,4 +1,4 @@
-# Languini: Full-Stack AI Language Tutor 🧠
+# Languini: Full-Stack AI Language 🧠
 
 !
 
@@ -6,37 +6,50 @@
 
 | Component | Link |
 | :--- | :--- |
-| **Live Demo** | **[Test the Live Project!](YOUR_LIVE_DEMO_URL)** *(Primary CTA)* |
-| **Source Code** | **[Explore the Backend API](LINK_TO_BACKEND_FOLDER)** |
-| **Source Code** | **[Explore the Frontend Client](LINK_TO_FRONTEND_FOLDER)** |
+| **Live Demo** | **[Test the Live Project!](https://languini.onrender.com/)** |
+<!-- | **Source Code** | **[Explore the Backend API](LINK_TO_BACKEND_FOLDER)** |
+| **Source Code** | **[Explore the Frontend Client](LINK_TO_FRONTEND_FOLDER)** | -->
 
 ---
 
-## 🎯 Project Overview: Validation of Full-Stack Proficiency
+## 🎯 Project Overview: Learning Web Development 
 
-**Languini** is a high-impact portfolio piece designed to validate my full-stack development, security, and architectural design skills. It is an end-to-end application integrating a complex **OpenAI/Gemini AI API** with a custom, secure backend.
+I built this project to solidify everything I've been learning about web development over the past few months. I've learned modern web technologies like Node.js, React.js, TailwindCSS etc. I've also learned about NoSQL databases, RESTful API's, Security and Authentication, etc. 
 
-This project demonstrates expertise in:
+This project demonstrates my abilities in:
 
-* Building and securing a **production-ready Node.js REST API**.
-* Implementing **secure custom JWT/Cookie authentication**.
-* Advanced **client-side state management** with Zustand.
-* Complex **data modeling** and **Full CRUD operations** using MongoDB.
-* Integrating **real-time communication** via WebSockets (or Socket.IO).
+* Building a **RESTful API** with Node.js and Express.js.
+* Persistent data storage using **NoSQL and MongoDB.** 
+* **User Authentication** with bycrypt and JWT.
+* Building a beautiful **UI with React.js and TailwindCSS.** 
+* **State management** in React.js using Zustand.
+* Implementing **real-time chat via socket.io.** 
 
 ---
 
-## 🛠️ Key Technical Achievements & Skills Demonstrated
+## 🛠️ Key Features 
 
 The core technical accomplishments of Languini, framed from a technical hiring manager's perspective:
 
 | Feature / User Benefit | Technical Accomplishment (The "Proof") |
 | :--- | :--- |
-| **AI-Powered Conversation Practice** | Deep, stateful integration with the **OpenAI/Gemini API** for dynamic responses, paired with advanced **server-side state management** to maintain conversation history and context. |
+| **Persistent Data Storage** | Used NoSQL and MongoDB to implement persistent data storage for users and user data. | ✅ Done |
+| **Secure User Authentication** | Implemented sign up, sign in, and logout using JWT and bycrpt, storing user info and encrypted passwords in MongoDB | ✅ Done |
+| **Built a RESTful API** | Provides an API to do CRUD operations on the User and Message Data stored in MongoDB. | ✅ Done |
+| **Real Time Messaging** | Implemented Real Time Chat using web sockets. | ✅ Done |
+| **Beautiful and Intuitive UI** | Built a messaging interface using React.js, HTML, and TailwindCSS | ✅ Done |
+| **Chat with an AI Spanish Tutor** | Chat with an AI tutor that generates custom lessons and practice conversations. | 🚧 In Progess |
+| **Add Friends and Contacts** | Ability to find and add friends, and keep track of a users contacts. | 🚧 In Progess |
+| **Dictionary of learned words** | Let users add new words to a dictionary. | ⚫ Not Started |
+| **Flashcards** | Allow users to create quizzes from dictionary words, and track learning progress. | ⚫ Not Started |
+
+
+
+<!-- | **AI-Powered Conversation Practice** | Deep, stateful integration with the **OpenAI/Gemini API** for dynamic responses, paired with advanced **server-side state management** to maintain conversation history and context. |
 | **Real-Time Data Flow** | Implementation of **WebSockets** for low-latency, real-time feature delivery (e.g., chat updates) and secure, persistent user connectivity. |
 | **Secure User Authentication** | Custom-built authentication flow using **Express.js**, **bcrypt** for secure password hashing, and **JWT/Cookies** for stateless session management and authorization. |
 | **Persistent Learning Data** | **Complex database design** and **Full CRUD operations** in **MongoDB** to store and retrieve unique user data, generated lesson plans, and personalized dictionary items. |
-| **Dynamic, Complex UI** | Demonstrates the ability to render a complex, component-based chat and dashboard interface using **React** and managing local state effectively with **Zustand**. |
+| **Dynamic, Complex UI** | Demonstrates the ability to render a complex, component-based chat and dashboard interface using **React** and managing local state effectively with **Zustand**. | -->
 
 ---
 
@@ -44,12 +57,12 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 
 | Type | Technologies Used |
 | :--- | :--- |
-| **Frontend** | React, Zustand (State Management), TailwindCSS, DaisyUI (Coffee Theme) |
+| **Frontend** | React, Zustand (State Management), TailwindCSS, DaisyUI (Components and Styling) |
 | **Backend** | Node.js, Express.js (REST API) |
 | **Database** | MongoDB |
 | **Security** | Custom JWT/Cookies, bcrypt |
 | **Real-Time** | WebSockets / Socket.IO |
-| **AI Integration** | OpenAI or Gemini API |
+| **AI Integration** | OpenRouter |
 
 ---
 
