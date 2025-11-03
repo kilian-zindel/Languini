@@ -31,7 +31,7 @@ This project demonstrates my abilities in:
 
 The core technical accomplishments of Languini, framed from a technical hiring manager's perspective:
 
-| Feature / User Benefit | Technical Accomplishment (The "Proof") |
+| Feature / User Benefit | Technical Accomplishment (The "Proof") | Status |
 | :--- | :--- |
 | **Persistent Data Storage** | Used NoSQL and MongoDB to implement persistent data storage for users and user data. | ✅ Done |
 | **Secure User Authentication** | Implemented sign up, sign in, and logout using JWT and bycrpt, storing user info and encrypted passwords in MongoDB | ✅ Done |
@@ -70,8 +70,8 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 
 1.  **Secure Authentication:** User registers or logs in. A custom-built process leverages `bcrypt` for password hashing, and a secure **HTTP-only cookie containing a JWT** is used to establish an authenticated, persistent session.
 2.  **RESTful API:** The React client communicates exclusively with the **Node.js/Express.js REST API** to manage all persistent user data. All routes are secured and checked for valid JWTs.
-3.  **AI & State Management:** Conversation requests are sent to the backend, which securely routes the request to the **OpenAI/Gemini API**. The backend manages the context/history to ensure the AI remains in character and on-topic.
-4.  **Learning Persistence:** New vocabulary and AI-designed lesson plans are persisted in **MongoDB** using normalized data models for efficient retrieval and review in the flashcard module.
+3.  **AI & State Management:** Conversation requests are sent to the backend, which securely routes the request to the **OpenRouter API**. The context and conversation history is added to ensure the AI remains in character and on-topic.
+4.  **Learning Persistence:** New vocabulary and AI-designed lesson plans will be stored in **MongoDB** using normalized data models for efficient retrieval and review in the dictionary and flashcard components. 
 
 ---
 
@@ -80,38 +80,21 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 **Q: What was the most technically challenging part of this project?**
 **A:** Implementing robust **global state management** using **Zustand**. This involved maintaining the integrity of the dynamic conversation history, profile data, and UI state across various React components while minimizing unnecessary re-renders. It required a deep practical application of React Hooks, component lifecycle, and state normalization to ensure a performant, low-latency user experience.
 
+<!-- Q: How did you handle rate limiting or cost management when integrating the AI API? A: I implemented server-side request handling to manage and validate all AI calls before they reach the API provider. For production readiness, I would integrate a basic token counter to monitor usage per session and implement a leaky bucket rate limiter to prevent abuse or excessive spending, ensuring efficient use of the API resource.
+
+Q: What architectural choice did you make regarding state management between the client and server, and why? A: I opted for a stateless REST API secured by JWTs/Cookies for general user data and authentication. However, I use the backend to manage the stateful conversation context (the history array) for the AI API integration. This hybrid approach ensures the application is highly scalable (stateless API) while maintaining a complex, multi-turn conversation experience without forcing the client to manage large, sensitive conversation history locally.
+
+Q: How did you secure the custom authentication system? A: Security was paramount. I secured the system by:
+
+    Using bcrypt to hash all user passwords before storing them in MongoDB.
+
+    Issuing HTTP-only cookies containing the JSON Web Token (JWT) to mitigate Cross-Site Scripting (XSS) attacks.
+
+    Implementing CSRF tokens (or similar anti-forgery measures) and configuring CORS restrictions on the Express server to only allow access from the designated frontend domain. -->
 ---
 
-## ⚙️ Quick Start (How to Run Locally)
 
-*(You must fill in these steps for a complete README)*
-
-1.  **Clone the repository:** `git clone [repository_url]`
-2.  **Setup Environment:** Create a `.env` file in the root of the backend folder with the following variables:
-    ```
-    PORT=5000
-    MONGODB_URI=...
-    JWT_SECRET=...
-    OPENAI_API_KEY=...
-    ```
-3.  **Install Dependencies:**
-    ```bash
-    # In the /backend directory
-    npm install
-    # In the /frontend directory
-    npm install
-    ```
-4.  **Run:**
-    ```bash
-    # Start the backend server
-    npm start 
-    # Start the frontend client
-    npm run dev
-    ```
-
----
-
-## 💡 Suggestions for What to Include
+<!-- ## 💡 Suggestions for What to Include
 
 In addition to the content above, you should include these items to make the README complete for an engineering audience:
 
@@ -129,4 +112,4 @@ It is generally **not** recommended to put detailed technical documentation with
 * **Keep the README Focused:** The README should remain a *marketing document* for your project, focusing on the architecture and how to run it.
 * **Separate API Documentation:** For technical recruiters/engineers, the best place for detailed documentation is a separate file or generated document.
     * **Recommendation:** Create an `API_DOCS.md` file (or use a tool like Swagger/OpenAPI) that lists your main REST API routes, HTTP methods, required parameters, and example response bodies. Link directly to this file from the main README.
-* **In-Code Documentation:** The best place to document complex logic, state management decisions (e.g., why you chose Zustand over Redux), and security-focused functions is directly within the code using comments or JSDoc-style documentation. This allows engineers to understand *how* the code works as they explore the repository.
+* **In-Code Documentation:** The best place to document complex logic, state management decisions (e.g., why you chose Zustand over Redux), and security-focused functions is directly within the code using comments or JSDoc-style documentation. This allows engineers to understand *how* the code works as they explore the repository. -->
