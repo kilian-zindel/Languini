@@ -1,4 +1,4 @@
-# Languini: Full-Stack AI Language 🧠
+# Languini: Full-Stack AI Language Learning App 🧠
 
 !
 
