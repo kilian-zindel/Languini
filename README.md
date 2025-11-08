@@ -70,6 +70,7 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 | **Real-Time** | socket.io |
 | **AI Integration** | OpenRouter |
 
+<!--
 ---
 
 ## 🧠 The Technical Flow ("How It Works")
@@ -80,6 +81,8 @@ The core technical accomplishments of Languini, framed from a technical hiring m
 4.  **Learning Persistence:** New vocabulary and AI-designed lesson plans will be stored in **MongoDB** and accessed in the dictionary and flashcard components. 
 
 ---
+-->
+
 
 <!-- ## ❓ FAQ for Hiring Managers
 
