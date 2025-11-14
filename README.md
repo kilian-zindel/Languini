@@ -33,7 +33,7 @@ This project demonstrates my abilities in:
 
 ## 🛠️ Key Features 
 
-The core technical accomplishments of Languini, framed from a technical hiring manager's perspective:
+The core technical accomplishments of Languini
 
 | Feature / User Benefit | Technical Accomplishment (The "Proof") | Status |
 | :--- | :--- | ---: |
